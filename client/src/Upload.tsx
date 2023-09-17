@@ -29,7 +29,7 @@ function Upload() {
       return;
     }
   
-    const profilePicUrl = `https://ipfs.io/ipfs/***NFT-IMAGE-INFO**/${nftNumber.toString()}.png`;
+    const profilePicUrl = `https://rowant.co/tweak/${nftNumber.toString()}.png`;
   
     const htmlContent = `
     <html>
@@ -103,7 +103,7 @@ function Upload() {
   
     try {
       setIsLoading(true);
-      const response = await fetch("http://localhost:8111/initiate-upload");
+      const response = await fetch("https://fleek0.rowant.co:8111/initiate-upload");
       const responseJson = await response.json();
       const uploadResult = await upload([htmlFile], {
         token: responseJson.uploadToken,
