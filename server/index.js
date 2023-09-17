@@ -6,7 +6,7 @@ const { SpheronClient, ProtocolEnum } = require("@spheron/storage");
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 8111;
+const PORT = process.env.PORT || 80;
 const SPHERON_TOKEN = process.env.SPHERON_TOKEN;
 
 app.use(cors());
