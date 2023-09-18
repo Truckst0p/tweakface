@@ -39,7 +39,7 @@ var fs = require('fs');
 var options = {
      key: fs.readFileSync('/etc/letsencrypt/live/fleek0.rowant.co/privkey.pem'),
      cert: fs.readFileSync('/etc/letsencrypt/live/fleek0.rowant.co/fullchain.pem'),
-     ca: fs.readFileSync('/path/to/chain.pem')
+     ca: fs.readFileSync('/etc/letsencrypt/live/fleek0.rowant.co/chain.pem')
 }
 var server = https.createServer(options, handlerFunction);
 server.listen(8080, '127.0.0.1');
