@@ -103,7 +103,7 @@ function Upload() {
   
     try {
       setIsLoading(true);
-      const response = await fetch("https://fleek0.rowant.co:80/initiate-upload");
+      const response = await fetch("https://fleek0.rowant.co:8080/initiate-upload");
       const responseJson = await response.json();
       const uploadResult = await upload([htmlFile], {
         token: responseJson.uploadToken,
