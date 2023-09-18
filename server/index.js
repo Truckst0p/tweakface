@@ -1,12 +1,14 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const https = require('https');
+const fs = require('fs');
 const { SpheronClient, ProtocolEnum } = require("@spheron/storage");
 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 80;
+const HTTPS_PORT = process.env.HTTPS_PORT || 8080;
 const SPHERON_TOKEN = process.env.SPHERON_TOKEN;
 
 app.use(cors());
@@ -34,16 +36,16 @@ app.get("/initiate-upload", async (req, res, next) => {
   }
 });
 
-var https = require('https');
-var fs = require('fs');
-var options = {
-     key: fs.readFileSync('/etc/letsencrypt/live/fleek0.rowant.co/privkey.pem'),
-     cert: fs.readFileSync('/etc/letsencrypt/live/fleek0.rowant.co/fullchain.pem'),
-     ca: fs.readFileSync('/etc/letsencrypt/live/fleek0.rowant.co/chain.pem')
-}
-var server = https.createServer(options, handlerFunction);
-server.listen(8080, '127.0.0.1');
+// HTTPS options
+const options = {
+  key: fs.readFileSync('/etc/letsencrypt/live/fleek0.rowant.co/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/fleek0.rowant.co/fullchain.pem'),
+  ca: fs.readFileSync('/etc/letsencrypt/live/fleek0.rowant.co/chain.pem')
+};
 
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+// Create HTTPS server
+const httpsServer = https.createServer(options, app);
+
+httpsServer.listen(HTTPS_PORT, () => {
+  console.log(`HTTPS Server running on port ${HTTPS_PORT}`);
 });
