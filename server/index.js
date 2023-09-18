@@ -37,8 +37,8 @@ app.get("/initiate-upload", async (req, res, next) => {
 var https = require('https');
 var fs = require('fs');
 var options = {
-     key: fs.readFileSync('/path/to/privkey.pem'),
-     cert: fs.readFileSync('/path/to/fullchain.pem'),
+     key: fs.readFileSync('/etc/letsencrypt/live/fleek0.rowant.co/privkey.pem'),
+     cert: fs.readFileSync('/etc/letsencrypt/live/fleek0.rowant.co/fullchain.pem'),
      ca: fs.readFileSync('/path/to/chain.pem')
 }
 var server = https.createServer(options, handlerFunction);
